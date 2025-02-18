@@ -19,6 +19,6 @@ CREATE TABLE cert_gen_re (
     uuid CHAR(36) NOT NULL,
     request_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     status ENUM('pending', 'approved', 'rejected', 'completed') DEFAULT 'pending',
-    certaction ENUM('generation','revokation') DEFAULT 'generation',
+    cert_action ENUM('generation','revokation') DEFAULT 'generation',
     FOREIGN KEY (uuid) REFERENCES users(uuid) ON DELETE CASCADE
 );
