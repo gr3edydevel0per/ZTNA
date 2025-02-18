@@ -34,3 +34,12 @@ CREATE TABLE cert_gen_re (
     csr TEXT, -- Stores the certificate signing request for generation
     FOREIGN KEY (uuid) REFERENCES users(uuid) ON DELETE CASCADE
 );
+
+
+CREATE TABLE server_config (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    ta_key TEXT NOT NULL,  -- TLS Auth Key
+    ca_crt TEXT NOT NULL,  -- Certificate Authority Certificate
+    server_crt TEXT NOT NULL,  -- Server Certificate
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
