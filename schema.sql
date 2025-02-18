@@ -8,7 +8,6 @@ CREATE TABLE users (
 CREATE TABLE certificates (
     id INT AUTO_INCREMENT PRIMARY KEY,
     uuid CHAR(36) NOT NULL,
-    certificate TEXT NOT NULL, -- Stores the actual certificate
     issued_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     expires_at TIMESTAMP NOT NULL, -- Expiry date of the certificate
     status ENUM('active', 'revoked', 'expired') DEFAULT 'active',
@@ -20,6 +19,6 @@ CREATE TABLE cert_gen_re (
     uuid CHAR(36) NOT NULL,
     request_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     status ENUM('pending', 'approved', 'rejected', 'completed') DEFAULT 'pending',
-    csr TEXT NOT NULL, -- Certificate Signing Request
+    certaction ENUM('generation','revokation') DEFAULT 'generation',
     FOREIGN KEY (uuid) REFERENCES users(uuid) ON DELETE CASCADE
 );
