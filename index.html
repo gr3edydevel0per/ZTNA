@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <!--<title> Drop Down Sidebar Menu | CodingLab </title>-->
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="style.css">
+    <!-- Boxiocns CDN Link -->
+    <link
+      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div class="sidebar close">
+      <div class="logo-details">
+        <i class='bx bxs-network-chart'></i>
+        <span class="logo_name">ZTNA</span>
+      </div>
+      <ul class="nav-links">
+        <li>
+          <a href="#">
+            <i class='bx bxs-user' ></i>            
+            <span class="link_name">Users</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link_name" href="#">Users</a></li>
+          </ul>
+        </li>
+        <li>
+          <div class="iocn-link">
+            <a href="#">
+              <i class="bx bx-collection"></i>
+              <span class="link_name">Category</span>
+            </a>
+            <i class="bx bxs-chevron-down arrow"></i>
+          </div>
+          <ul class="sub-menu">
+            <li><a class="link_name" href="#">Category</a></li>
+            <li><a href="#">HTML & CSS</a></li>
+            <li><a href="#">JavaScript</a></li>
+            <li><a href="#">PHP & MySQL</a></li>
+          </ul>
+        </li>
+        <li>
+          <div class="iocn-link">
+            <a href="#">
+              <i class="bx bx-book-alt"></i>
+              <span class="link_name">Posts</span>
+            </a>
+            <i class="bx bxs-chevron-down arrow"></i>
+          </div>
+          <ul class="sub-menu">
+            <li><a class="link_name" href="#">Posts</a></li>
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">Login Form</a></li>
+            <li><a href="#">Card Design</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bx-pie-chart-alt-2"></i>
+            <span class="link_name">Analytics</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link_name" href="#">Analytics</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bx-line-chart"></i>
+            <span class="link_name">Chart</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link_name" href="#">Chart</a></li>
+          </ul>
+        </li>
+        <li>
+          <div class="iocn-link">
+            <a href="#">
+              <i class="bx bx-plug"></i>
+              <span class="link_name">Plugins</span>
+            </a>
+            <i class="bx bxs-chevron-down arrow"></i>
+          </div>
+          <ul class="sub-menu">
+            <li><a class="link_name" href="#">Plugins</a></li>
+            <li><a href="#">UI Face</a></li>
+            <li><a href="#">Pigments</a></li>
+            <li><a href="#">Box Icons</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bx-compass"></i>
+            <span class="link_name">Explore</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link_name" href="#">Explore</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bx-history"></i>
+            <span class="link_name">History</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link_name" href="#">History</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bx-cog"></i>
+            <span class="link_name">Setting</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link_name" href="#">Setting</a></li>
+          </ul>
+        </li>
+        <li>
+          <div class="profile-details">
+            <div class="profile-content">
+              <img src="image/profile.jpg" alt="profileImg" />
+            </div>
+            <div class="name-job">
+              <div class="profile_name">Prem Shahi</div>
+              <div class="job">Web Desginer</div>
+            </div>
+            <i class="bx bx-log-out"></i>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <section class="home-section">
+      <div class="home-content">
+        <!-- <i class="bx bx-menu"></i> -->
+        <span class="text">Admin Dashboard</span>
+      </div>
+  
+    <main>
+
+
+
+
+
+
+        <div class="content">
+      
+<section class="user-creation">
+      
+              <div class="card">
+                
+                      <label for="username">Username</label>
+                      <input type="text" id="username" required>
+      
+                      <label for="email">Email</label>
+                      <input type="email" id="email" required>
+      
+                      <label for="password">Password</label>
+                      <input type="password" id="password" required>
+      
+                      <label for="department">Department</label>
+                      <div class="select">
+                          <select id="department">
+                              <option value="">Select Department</option>
+                          </select>
+                      </div>
+      
+                      <button type="submit" class="button ">
+                          <i class="fa-solid fa-plus"></i>
+                          <span>Add user</span>
+                      </button>
+            
+              </div>
+      </section>
+          
+      
+          <section class="table-header grid">
+            <div>
+              <div class="select">
+                <select>
+                  <option>Choose action</option>
+                </select>
+              </div>
+              <span>Selected 4 of 123 items</span>
+            </div>
+      
+            <a class="button link">
+              <span>Filters</span>
+              <i class="fa-solid fa-angle-down"></i>
+            </a>
+          </section>
+      
+          <div class="card">
+            <table>
+              <thead>
+                <tr>
+                  <th>
+                    <div class="test"></div>
+                    <div class="checkbox">
+                      <input type="checkbox" checked />
+                      <span class="checkmark minus"></span>
+                    </div>
+                  </th>
+                  <th>ID</th>
+                  <th>User</th>
+                  <th>First name</th>
+                  <th>Last name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Location</th>
+                </tr>
+              </thead>
+      
+              <tbody>
+                <tr class="selected">
+                  <td>
+                    <div class="checkbox">
+                      <input type="checkbox" checked />
+                      <span class="checkmark"></span>
+                    </div>
+                  </td>
+                  <td>1</td>
+                  <td>sbardwell0</td>
+                  <td>Sarajane</td>
+                  <td>Bardwell</td>
+                  <td>sbardwell0@freewebs.com</td>
+                  <td>+62 347 385 6227</td>
+                  <td>Pagedangan</td>
+                </tr>
+      
+                <tr class="selected">
+                  <td>
+                    <div class="checkbox">
+                      <input type="checkbox" checked />
+                      <span class="checkmark"></span>
+                    </div>
+                  </td>
+                  <td>2</td>
+                  <td>ptroctor1</td>
+                  <td>Pearl</td>
+                  <td>Troctor</td>
+                  <td>ptroctor1@weebly.com</td>
+                  <td>+62 731 635 4272</td>
+                  <td>Labuhan Deli</td>
+                </tr>
+      
+                <tr>
+                  <td>
+                    <div class="checkbox">
+                      <input type="checkbox" />
+                      <span class="checkmark"></span>
+                    </div>
+                  </td>
+                  <td>3</td>
+                  <td>rjone2</td>
+                  <td>Rustie</td>
+                  <td>Jone</td>
+                  <td>rjone2@dailymail.co.uk</td>
+                  <td>+7 722 827 4622</td>
+                  <td>Safakulevo</td>
+                </tr>
+      
+                <tr class="selected">
+                  <td>
+                    <div class="checkbox">
+                      <input type="checkbox" checked />
+                      <span class="checkmark"></span>
+                    </div>
+                  </td>
+                  <td>4</td>
+                  <td>etunder3</td>
+                  <td>Ebenezer</td>
+                  <td>Tunder</td>
+                  <td>etunder3@pinterest.com</td>
+                  <td>+27 764 777 3195</td>
+                  <td>Lebowakgomo</td>
+                </tr>
+      
+                <tr>
+                  <td>
+                    <div class="checkbox">
+                      <input type="checkbox" />
+                      <span class="checkmark"></span>
+                    </div>
+                  </td>
+                  <td>5</td>
+                  <td>mgabbott4</td>
+                  <td>Marwin</td>
+                  <td>Gabbott</td>
+                  <td>mgabbott4@webeden.co.uk</td>
+                  <td>+504 759 679 5928</td>
+                  <td>Corpus</td>
+                </tr>
+      
+                <tr>
+                  <td>
+                    <div class="checkbox">
+                      <input type="checkbox" />
+                      <span class="checkmark"></span>
+                    </div>
+                  </td>
+                  <td>6</td>
+                  <td>nmyrtle5</td>
+                  <td>Nissie</td>
+                  <td>Myrtle</td>
+                  <td>nmyrtle5@google.co.uk</td>
+                  <td>+63 526 915 9064</td>
+                  <td>Datagon</td>
+                </tr>
+      
+                <tr>
+                  <td>
+                    <div class="checkbox">
+                      <input type="checkbox" />
+                      <span class="checkmark"></span>
+                    </div>
+                  </td>
+                  <td>7</td>
+                  <td>kcecchetelli6</td>
+                  <td>Kyla</td>
+                  <td>Cecchetelli</td>
+                  <td>kcecchetelli6@issuu.com</td>
+                  <td>+880 272 781 1696</td>
+                  <td>Nabīnagar</td>
+                </tr>
+      
+                <tr class="selected">
+                  <td>
+                    <div class="checkbox">
+                      <input type="checkbox" checked />
+                      <span class="checkmark"></span>
+                    </div>
+                  </td>
+                  <td>8</td>
+                  <td>schevolleau7</td>
+                  <td>Susanne</td>
+                  <td>Chevolleau</td>
+                  <td>schevolleau7@yahoo.co.jp</td>
+                  <td>+62 100 130 4767</td>
+                  <td>Dukuhbadag</td>
+                </tr>
+      
+                <tr class="hover">
+                  <td>
+                    <div class="checkbox">
+                      <input type="checkbox" />
+                      <span class="checkmark"></span>
+                    </div>
+                  </td>
+                  <td>9</td>
+                  <td>llomond8</td>
+                  <td>Locke</td>
+                  <td>Lomond</td>
+                  <td>llomond8@addtoany.com</td>
+                  <td>+358 827 247 5884</td>
+                  <td>Orimattila</td>
+                </tr>
+      
+                <tr>
+                  <td>
+                    <div class="checkbox">
+                      <input type="checkbox" />
+                      <span class="checkmark"></span>
+                    </div>
+                  </td>
+                  <td>10</td>
+                  <td>lgronaller9</td>
+                  <td>Lemmie</td>
+                  <td>Gronaller</td>
+                  <td>lgronaller9@prnewswire.com</td>
+                  <td>+63 924 190 7074</td>
+                  <td>Looc</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+      
+          <section class="table-footer grid">
+            <span>Displaying 1-10 of 123 items</span>
+            <div class="paging grid">
+              <span>
+                Page
+                <input type="number" value="1">
+                of 13
+              </span>
+              <div class="button icon">
+                <i class="fa-solid fa-angle-left"></i>
+              </div>
+              <div class="button icon">
+                <i class="fa-solid fa-angle-right"></i>
+              </div>
+            </div>
+          </section>
+      
+          <div class="colors">
+            <div class="color primary-100"></div>
+            <div class="color primary-200"></div>
+            <div class="color primary-300"></div>
+            <div class="color primary"></div>
+            <div class="color primary-500"></div>
+            <div class="color white"></div>
+            <div class="color neutral-100"></div>
+            <div class="color neutral"></div>
+            <div class="color black"></div>
+          </div>
+        </div>
+      </main>
+      
+    </section>
+    <script>
+      let arrow = document.querySelectorAll(".arrow");
+      for (var i = 0; i < arrow.length; i++) {
+        arrow[i].addEventListener("click", (e) => {
+          let arrowParent = e.target.parentElement.parentElement; //selecting main parent of arrow
+          arrowParent.classList.toggle("showMenu");
+        });
+      }
+    //   let sidebar = document.querySelector(".sidebar");
+    //   let sidebarBtn = document.querySelector(".bx-menu");
+    //   console.log(sidebarBtn);
+    //   sidebarBtn.addEventListener("click", () => {
+    //     sidebar.classList.toggle("close");
+    //   });
+    </script>
+  </body>
+</html>
