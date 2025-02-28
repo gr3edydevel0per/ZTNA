@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OwlGuard Secure Access</title>
+    <style>
+        @charset "UTF-8";
+        body{
+          margin: 0;
+          padding: 0;
+          background: #141e1e;
+        }
+        .console-output {
+            white-space: pre-wrap;
+            background: #141e1e;
+            color: rgb(235, 181, 106);
+            margin: 0 auto;
+            font-family: Monaco, Consolas, "Lucida Console", monospace;
+            padding: 1em 1em 2.5em 1em;
+            line-height: 1.45;
+            position: relative;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+<body>
+    <pre class="console-output" id="console"></pre>
+    
+    <script>
+        async function fetchDevicePosture() {
+            try {
+                const response = await fetch("/api/device_posture");
+                const data = await response.json();
+                return data.status;
+            } catch (error) {
+                console.error("Error fetching device posture:", error);
+                return "unknown";
+            }
+        }
+
+        async function displayConsole() {
+
+            const consoleText = [
+                "$: > Welcome to OwlGuard v1.0 - Enterprise Secure Access Portal",
+                "$: > Logged in as: [username]",
+                "",
+
+                "",
+                "$: > Initializing OwlGuard Secure Access  ■■■■■■■■■■■ ",
+                "$: > System integrity check: PASSED",
+                "$: > Detecting enterprise network environment  ■■■■■■■■■■■ ",
+                "$: > Establishing encrypted communication with Secure Edge Gateway...",
+                "$: > Loading enterprise security policies  ■■■■■■■■■■■ ",
+                "$: > Performing comprehensive device posture assessment  ■■■■■■■■■■■ ",
+                "$: > Multi-factor authentication completed successfully.",
+                "",
+
+            ];
+            const status = await fetchDevicePosture();
+            
+            if (status === "secure") {
+                consoleText.push("$: > Device posture assessment: COMPLIANT ✅");
+                consoleText.push("$: > Enterprise-secured connection established.");
+                consoleText.push("$: > Initiate VPN session? [Y/N]");
+            } else {
+                consoleText.push("$: > Device posture assessment: NON-COMPLIANT ❌");
+                consoleText.push("$: > Access restricted. Compliance remediation required.");
+            }
+            
+            let index = 0;
+            const consoleElement = document.getElementById("console");
+            function displayLine() {
+                if (index < consoleText.length) {
+                    consoleElement.innerHTML += consoleText[index] + "\n";
+                    index++;
+                    setTimeout(displayLine, Math.random() * 300 + 100);
+                }
+            }
+            displayLine();
+        }
+
+        displayConsole();
+    </script>
+</body>
+</html>

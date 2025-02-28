@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <!--<title> Drop Down Sidebar Menu | CodingLab </title>-->
     <link rel="stylesheet" href="index.css" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css">
     <!-- Boxiocns CDN Link -->
     <link
       href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
@@ -14,125 +14,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
-    <div class="sidebar close">
+    <!-- Sidebar for navigation -->
+    <div class="sidebar">
       <div class="logo-details">
-        <i class='bx bxs-network-chart'></i>
-        <span class="logo_name">ZTNA</span>
+        <!-- Icon and logo name -->
+        <i class='bx bxl-c-plus-plus icon'></i>
+        <div class="logo_name">Codepen</div>
+        <i class='bx bx-menu' id="btn"></i> <!-- Menu button to toggle sidebar -->
       </div>
-      <ul class="nav-links">
+      <ul class="nav-list">
+   
+        <!-- List of navigation items -->
         <li>
           <a href="#">
-            <i class='bx bxs-user' ></i>            
-            <span class="link_name">Users</span>
+            <i class='bx bx-grid-alt'></i>
+            <span class="links_name">Dashboard</span>
           </a>
-          <ul class="sub-menu blank">
-            <li><a class="link_name" href="#">Users</a></li>
-          </ul>
+          <span class="tooltip">Dashboard</span>
         </li>
+        <!-- Additional navigation items -->
         <li>
-          <div class="iocn-link">
-            <a href="#">
-              <i class="bx bx-collection"></i>
-              <span class="link_name">Category</span>
-            </a>
-            <i class="bx bxs-chevron-down arrow"></i>
-          </div>
-          <ul class="sub-menu">
-            <li><a class="link_name" href="#">Category</a></li>
-            <li><a href="#">HTML & CSS</a></li>
-            <li><a href="#">JavaScript</a></li>
-            <li><a href="#">PHP & MySQL</a></li>
-          </ul>
-        </li>
-        <li>
-          <div class="iocn-link">
-            <a href="#">
-              <i class="bx bx-book-alt"></i>
-              <span class="link_name">Posts</span>
-            </a>
-            <i class="bx bxs-chevron-down arrow"></i>
-          </div>
-          <ul class="sub-menu">
-            <li><a class="link_name" href="#">Posts</a></li>
-            <li><a href="#">Web Design</a></li>
-            <li><a href="#">Login Form</a></li>
-            <li><a href="#">Card Design</a></li>
-          </ul>
+          <a href="#">
+            <i class='bx bx-user'></i>
+            <span class="links_name">User</span>
+          </a>
+          <span class="tooltip">User</span>
         </li>
         <li>
           <a href="#">
-            <i class="bx bx-pie-chart-alt-2"></i>
-            <span class="link_name">Analytics</span>
+            <i class='bx bx-chat'></i>
+            <span class="links_name">Messages</span>
           </a>
-          <ul class="sub-menu blank">
-            <li><a class="link_name" href="#">Analytics</a></li>
-          </ul>
+          <span class="tooltip">Messages</span>
         </li>
         <li>
           <a href="#">
-            <i class="bx bx-line-chart"></i>
-            <span class="link_name">Chart</span>
+            <i class='bx bx-pie-chart-alt-2'></i>
+            <span class="links_name">Analytics</span>
           </a>
-          <ul class="sub-menu blank">
-            <li><a class="link_name" href="#">Chart</a></li>
-          </ul>
-        </li>
-        <li>
-          <div class="iocn-link">
-            <a href="#">
-              <i class="bx bx-plug"></i>
-              <span class="link_name">Plugins</span>
-            </a>
-            <i class="bx bxs-chevron-down arrow"></i>
-          </div>
-          <ul class="sub-menu">
-            <li><a class="link_name" href="#">Plugins</a></li>
-            <li><a href="#">UI Face</a></li>
-            <li><a href="#">Pigments</a></li>
-            <li><a href="#">Box Icons</a></li>
-          </ul>
+          <span class="tooltip">Analytics</span>
         </li>
         <li>
           <a href="#">
-            <i class="bx bx-compass"></i>
-            <span class="link_name">Explore</span>
+            <i class='bx bx-folder'></i>
+            <span class="links_name">File Manager</span>
           </a>
-          <ul class="sub-menu blank">
-            <li><a class="link_name" href="#">Explore</a></li>
-          </ul>
+          <span class="tooltip">Files</span>
         </li>
         <li>
           <a href="#">
-            <i class="bx bx-history"></i>
-            <span class="link_name">History</span>
+            <i class='bx bx-cart-alt'></i>
+            <span class="links_name">Order</span>
           </a>
-          <ul class="sub-menu blank">
-            <li><a class="link_name" href="#">History</a></li>
-          </ul>
+          <span class="tooltip">Order</span>
         </li>
         <li>
           <a href="#">
-            <i class="bx bx-cog"></i>
-            <span class="link_name">Setting</span>
+            <i class='bx bx-heart'></i>
+            <span class="links_name">Saved</span>
           </a>
-          <ul class="sub-menu blank">
-            <li><a class="link_name" href="#">Setting</a></li>
-          </ul>
+          <span class="tooltip">Saved</span>
         </li>
         <li>
-          <div class="profile-details">
-            <div class="profile-content">
-              <img src="image/profile.jpg" alt="profileImg" />
-            </div>
-            <div class="name-job">
-              <div class="profile_name">Prem Shahi</div>
-              <div class="job">Web Desginer</div>
-            </div>
-            <i class="bx bx-log-out"></i>
-          </div>
+          <a href="#">
+            <i class='bx bx-cog'></i>
+            <span class="links_name">Setting</span>
+          </a>
+          <span class="tooltip">Setting</span>
         </li>
+    
       </ul>
     </div>
+    <!-- Main content area -->
+    <section class="home-section">
+      <div class="text">Dashboard</div>
+    </section>
+  
+  
+      <!-- Floating YouTube Button -->
+      <a href="https://www.youtube.com/@PixelPerfectLabs" class="youtube-button" target="_blank">
+        <i class="bx bxl-youtube"></i>
+      </a>
     <section class="home-section">
       <div class="home-content">
         <!-- <i class="bx bx-menu"></i> -->
@@ -411,19 +373,34 @@
       
     </section>
     <script>
-      let arrow = document.querySelectorAll(".arrow");
-      for (var i = 0; i < arrow.length; i++) {
-        arrow[i].addEventListener("click", (e) => {
-          let arrowParent = e.target.parentElement.parentElement; //selecting main parent of arrow
-          arrowParent.classList.toggle("showMenu");
-        });
-      }
-    //   let sidebar = document.querySelector(".sidebar");
-    //   let sidebarBtn = document.querySelector(".bx-menu");
-    //   console.log(sidebarBtn);
-    //   sidebarBtn.addEventListener("click", () => {
-    //     sidebar.classList.toggle("close");
-    //   });
+      // Get the sidebar, close button, and search button elements
+let sidebar = document.querySelector(".sidebar");
+let closeBtn = document.querySelector("#btn");
+let searchBtn = document.querySelector(".bx-search");
+let navList = document.querySelector(".nav-list");
+
+// Event listener for the menu button to toggle the sidebar open/close
+closeBtn.addEventListener("click", () => {
+  sidebar.classList.toggle("open"); // Toggle the sidebar's open state
+  navList.classList.toggle("scroll"); // Toggle scroll state
+  menuBtnChange(); // Call function to change button icon
+});
+
+// Event listener for the search button to open the sidebar
+searchBtn.addEventListener("click", () => {
+  sidebar.classList.toggle("open");
+  navList.classList.toggle("scroll");
+  menuBtnChange(); // Call function to change button icon
+});
+
+// Function to change the menu button icon
+function menuBtnChange() {
+  if (sidebar.classList.contains("open")) {
+    closeBtn.classList.replace("bx-menu", "bx-menu-alt-right"); // Change icon to indicate closing
+  } else {
+    closeBtn.classList.replace("bx-menu-alt-right", "bx-menu"); // Change icon to indicate opening
+  }
+}
     </script>
   </body>
 </html>

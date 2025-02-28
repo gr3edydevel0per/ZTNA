@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <title>Login</title>
+</head>
+<body>
+<div class="container" id="container">
+    <div class="form-container sign-in-container">
+        <form class="login-form" action="{{ url_for('login') }}" method="POST">
+            <h1>Sign in</h1>
+            <input type="text" name="username" placeholder="Email or Username" required />
+            <input type="password" name="password" placeholder="Password" required />
+            <a href="#">Forgot your password?</a>
+            <button type="submit">Sign In</button>
+            {% if error %}
+                <p style="color: red;">{{ error }}</p>
+            {% endif %}
+        </form>
+    </div>
+    <div class="overlay-container" style="padding: 0px !important;">
+       <div class="overlay">
+            <div class="overlay-panel overlay-right">
+                <div class="rightPanel">
+                    <h1>Welcome Back!</h1>
+                    <script
+                        src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"
+                        type="module"
+                    ></script>
+                    <dotlottie-player
+                        src="https://lottie.host/22e04746-109b-4750-9c50-425019723099/0R9D8LN4xk.lottie"
+                        background="transparent"
+                        speed="1"
+                        style="width: 300px; height: 300px"
+                        loop
+                        autoplay
+                    ></dotlottie-player>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>Powered by <strong>SecureEdge</strong> 🔒 - Ensuring Safe & Trusted Access</p>
+</footer>
+
+</body>
+</html>
