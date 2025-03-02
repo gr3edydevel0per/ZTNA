@@ -2,11 +2,11 @@ require('dotenv').config();  // Load environment variables from .env file
 const mysql = require('mysql2');
 
 // Read values from environment variables
-const dbHost = process.env.DB_HOST || 'localhost';
-const dbUser = process.env.DB_USER || 'root';
-const dbPass = process.env.DB_PASS || 'root';
-const dbName = process.env.DB_NAME || 'ztna';
-const dbPort = process.env.DB_PORT || 3306;
+const dbHost = process.env.DB_HOST ; 
+const dbUser = process.env.DB_USER ;
+const dbPass = process.env.DB_PASS ;
+const dbName = process.env.DB_NAME ;
+const dbPort = process.env.DB_PORT ;
 
 // Create a connection to the database
 const connection = mysql.createConnection({
