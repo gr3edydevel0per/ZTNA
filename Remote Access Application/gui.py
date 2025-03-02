@@ -22,7 +22,7 @@ class BrowserWindow(QMainWindow):
         # ✅ Create Web View
         self.browser = QWebEngineView()
 
-        # ✅ Enable JavaScript, Plugins, and Media Playback
+        # ✅ Enable JavaScript, Plpytugins, and Media Playback
         settings = self.browser.settings()
         settings.setAttribute(QWebEngineSettings.WebAttribute.JavascriptEnabled, True)
         settings.setAttribute(QWebEngineSettings.WebAttribute.PluginsEnabled, True)
