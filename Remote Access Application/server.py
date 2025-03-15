@@ -4,7 +4,6 @@ from utils.essentials import get_current_machine_id, getIP
 from utils.device_posture_check import run_device_posture_check
 from utils.device_data import get_device_data
 from utils.api_server import API_URL, USER_URL, DEVICE_URL
-from utils.vpn import vpn_manager
 
 app = Flask(__name__)
 app.secret_key = 'your-secret-key'  # Change this to a secure secret key
@@ -104,14 +103,6 @@ def connection():
             "details": posture_status
         }), 403
 
-    # Check if OpenVPN is installed
-    if not vpn_manager.is_openvpn_installed():
-        return jsonify({
-            "status": "error",
-            "message": "OpenVPN is not installed on this device",
-            "details": "Please install OpenVPN Connect to use the VPN service"
-        }), 400
-
     # All checks passed, allow connection
     return jsonify({
         "status": "success",
@@ -125,20 +116,7 @@ def connection():
 
 @app.route('/connectVPN')
 def connectVPN():
-    if 'token' not in session:
-        return redirect(url_for('home'))
-        
-    # Start VPN connection
-    vpn_result = vpn_manager.start_vpn()
-    
-    if vpn_result['status'] == 'error':
-        return render_template('connection.html', 
-                            error=vpn_result['message'],
-                            details=vpn_result.get('details', ''))
-    
-    return render_template('connection.html', 
-                        success=vpn_result['message'],
-                        details=vpn_result.get('details', ''))
+    return render_template('connection.html')
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -172,9 +150,6 @@ def login():
 
 @app.route('/logout')
 def logout():
-    # Stop VPN connection if active
-    vpn_manager.stop_vpn()
-    # Clear session
     session.clear()
     return redirect(url_for('home'))
 
@@ -189,5 +164,5 @@ def device_posture():
 def startApp():
     app.run(debug=False, use_reloader=False)
 
-if __name__ == '__main__':
-    startApp()
+
+
