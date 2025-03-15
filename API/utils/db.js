@@ -1,36 +1,45 @@
 require('dotenv').config();  // Load environment variables from .env file
 const mysql = require('mysql2');
 
-// Read values from environment variables
-const dbHost = process.env.DB_HOST ; 
-const dbUser = process.env.DB_USER ;
-const dbPass = process.env.DB_PASS ;
-const dbName = process.env.DB_NAME ;
-const dbPort = process.env.DB_PORT ;
-
-// Create a connection to the database
-const connection = mysql.createConnection({
-  host: dbHost,
-  user: dbUser,
-  password: dbPass,
-  database: dbName,
-  port: dbPort
+// Create a connection pool instead of a single connection
+const pool = mysql.createPool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
 
+// Promisify the pool to use async/await
+const promisePool = pool.promise();
+
 // Function to execute a query
-function executeQuery(sql) {
-  return new Promise((resolve, reject) => {
-    connection.query(sql, (err, results) => {
-      if (err) {
-        reject('Error executing query: ' + err);
-      } else {
-        resolve(results);
-      }
-    });
-  });
+async function executeQuery(sql, params = []) {
+  try {
+    const [rows] = await promisePool.execute(sql, params);
+    return rows;
+  } catch (error) {
+    throw new Error(`Database error: ${error.message}`);
+  }
+}
+
+// Test database connection
+async function testConnection() {
+  try {
+    await promisePool.execute('SELECT 1');
+    console.log('Database connection successful');
+    return true;
+  } catch (error) {
+    console.error('Database connection failed:', error);
+    return false;
+  }
 }
 
 // Export the function to be used in other files
 module.exports = {
-  executeQuery
+  executeQuery,
+  testConnection
 };
