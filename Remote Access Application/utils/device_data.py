@@ -6,17 +6,20 @@ import uuid
 import hashlib
 import os
 import subprocess
+from utils.essentials import get_current_machine_id,getIP
 
 def get_device_data():
     """
     Get device data from the device including a unique identifier
     """
     device_data = {
-        "device_id": generate_device_id(),
+        "public_ip": getIP(),
+        "device_id": get_current_machine_id(),
+        "device_fingerprint": generate_device_id(),
         "device_name": get_device_name(),
         "device_type": get_device_type(),
         "device_os": get_device_os(),
-        "hardware_id": get_hardware_id()
+        "hardware_fingerprint": get_hardware_id()
     }
     return device_data
 

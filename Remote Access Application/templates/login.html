@@ -4,19 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
-    <title>OwnlGuard-Login</title>
+    <title>Login - Remote Access</title>
+ 
 </head>
 <body>
 <div class="container" id="container">
     <div class="form-container sign-in-container">
-        <form class="login-form" action="{{ url_for('login') }}" method="POST">
+        <form id="loginForm" method="POST" action="{{ url_for('login') }}">
             <h1>Sign in</h1>
-            <input type="text" name="username" placeholder="Email" required />
-            <input type="password" name="password" placeholder="Password" required />
+            <div style="width: 100%;">
+                <input type="email" id="email" name="email" required placeholder="Email">
+            </div>
+            <div style="width: 100%;"> 
+                <input type="password" id="password" name="password" required placeholder="Password">
+            </div>
             <a href="#">Forgot your password?</a>
             <button type="submit">Sign In</button>
             {% if error %}
-                <p style="color: red;">{{ error }}</p>
+            <div class="error-message" style="color: red;margin-top: 10px;">{{ error }}</div>
             {% endif %}
         </form>
     </div>
@@ -24,7 +29,6 @@
        <div class="overlay">
             <div class="overlay-panel overlay-right">
                 <div class="rightPanel">
-             
                     <script
                         src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"
                         type="module"

@@ -74,5 +74,3 @@ def run_device_posture_check():
     
     return {"checks": checks, "compliant": not bool(non_compliant_checks)}
 
-if __name__ == "__main__":
-    run_device_posture_check()
