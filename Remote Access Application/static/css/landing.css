@@ -1,0 +1,35 @@
+@charset "UTF-8";
+body{
+  margin: 0;
+  padding: 0;
+  background: #141e1e;
+}
+.console-output {
+    white-space: pre-wrap;
+    background: #141e1e;
+    color: rgb(235, 181, 106);
+    margin: 0 auto;
+    font-family: Monaco, Consolas, "Lucida Console", monospace;
+    padding: 1em 1em 1em 1em;
+    line-height: 1.45;
+    position: relative;
+    overflow-x: hidden;
+}
+svg{
+width: 100px;
+height: 100px;
+margin: 20px;
+display:inline-block;
+}
+.preloader{
+position: absolute;
+margin: auto;
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
+width: 100px;
+height: 100px;
+
+
+}

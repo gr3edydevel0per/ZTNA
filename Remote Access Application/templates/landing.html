@@ -4,35 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OwlGuard Secure Access</title>
-    <style>
-        @charset "UTF-8";
-        body{
-          margin: 0;
-          padding: 0;
-          background: #141e1e;
-        }
-        .console-output {
-            white-space: pre-wrap;
-            background: #141e1e;
-            color: rgb(235, 181, 106);
-            margin: 0 auto;
-            font-family: Monaco, Consolas, "Lucida Console", monospace;
-            padding: 1em 1em 2.5em 1em;
-            line-height: 1.45;
-            position: relative;
-            overflow-x: hidden;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
 </head>
 <body>
-    <pre class="console-output" id="console"></pre>
+
+    <div id="preloader" class="preloader">   <svg version="1.1" id="L7" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+       <path fill="#fff" d="M31.6,3.5C5.9,13.6-6.6,42.7,3.5,68.4c10.1,25.7,39.2,38.3,64.9,28.1l-3.1-7.9c-21.3,8.4-45.4-2-53.8-23.3
+        c-8.4-21.3,2-45.4,23.3-53.8L31.6,3.5z">
+            <animateTransform 
+               attributeName="transform" 
+               attributeType="XML" 
+               type="rotate"
+               dur="2s" 
+               from="0 50 50"
+               to="360 50 50" 
+               repeatCount="indefinite" />
+        </path>
+       <path fill="#fff" d="M42.3,39.6c5.7-4.3,13.9-3.1,18.1,2.7c4.3,5.7,3.1,13.9-2.7,18.1l4.1,5.5c8.8-6.5,10.6-19,4.1-27.7
+        c-6.5-8.8-19-10.6-27.7-4.1L42.3,39.6z">
+            <animateTransform 
+               attributeName="transform" 
+               attributeType="XML" 
+               type="rotate"
+               dur="1s" 
+               from="0 50 50"
+               to="-360 50 50" 
+               repeatCount="indefinite" />
+        </path>
+       <path fill="#fff" d="M82,35.7C74.1,18,53.4,10.1,35.7,18S10.1,46.6,18,64.3l7.6-3.4c-6-13.5,0-29.3,13.5-35.3s29.3,0,35.3,13.5
+        L82,35.7z">
+            <animateTransform 
+               attributeName="transform" 
+               attributeType="XML" 
+               type="rotate"
+               dur="2s" 
+               from="0 50 50"
+               to="360 50 50" 
+               repeatCount="indefinite" />
+        </path></svg>
+    </div>
+ 
+    <pre class="console-output" id="console" style="display: none;"></pre>
+    <div id="vpn-input" style="display: none; position: relative; padding-left: 1rem;">
+        <span style="color: rgb(235, 181, 106); font-family: monospace; font-size: 16px;">$: > </span>
+        <button id="yes-btn" class="console-btn">Connect VPN</button>
+        <button id="no-btn" class="console-btn">Cancel</button>
+    </div>
+    
+    <style>
+        .console-btn {
+            background: transparent;
+            border: 1px solid rgb(235, 181, 106);
+            color: rgb(235, 181, 106);
+            font-family: monospace;
+            font-size: 16px;
+            padding: 2px 15px;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .console-btn:hover {
+            background: #00ff00;
+            color: #000;
+        }
+    </style>
     
     <script>
         async function fetchDevicePosture() {
             try {
                 const response = await fetch("/api/device_posture");
                 const data = await response.json();
-                return data.status;
+                console.log(data.compliant)
+                return data.compliant;
             } catch (error) {
                 console.error("Error fetching device posture:", error);
                 return "unknown";
@@ -40,32 +84,49 @@
         }
 
         async function displayConsole() {
-
+            const userdata =  {{ userlogged | tojson }} ;
             const consoleText = [
                 "$: > Welcome to OwlGuard v1.0 - Enterprise Secure Access Portal",
-                "$: > Logged in as: [username]",
+                `$: > Logged in as: ${userdata.name}  `,
+                `$: > Device Id: ${userdata.device_id}`,
                 "",
 
                 "",
                 "$: > Initializing OwlGuard Secure Access  ■■■■■■■■■■■ ",
-                "$: > System integrity check: PASSED",
-                "$: > Detecting enterprise network environment  ■■■■■■■■■■■ ",
-                "$: > Establishing encrypted communication with Secure Edge Gateway...",
-                "$: > Loading enterprise security policies  ■■■■■■■■■■■ ",
-                "$: > Performing comprehensive device posture assessment  ■■■■■■■■■■■ ",
-                "$: > Multi-factor authentication completed successfully.",
+                "$: > Detecting  network environment       ■■■■■■■■■■■ ",
+                `$: > Public IP Address: ${userdata.public_ip}             `,
+                `$: > Private IP Address: Disconnected`,
+//"$: > Establishing encrypted communication with Secure Edge Gateway..",
+                "$: > Loading security policies            ■■■■■■■■■■■ ",
+                "$: > Performing device posture assessment ■■■■■■■■■■■ ",
                 "",
 
             ];
             const status = await fetchDevicePosture();
             
-            if (status === "secure") {
-                consoleText.push("$: > Device posture assessment: COMPLIANT ✅");
+            if (status === true) {
+                consoleText.push(`$: > Device posture assessment: Compliant ✅`);
                 consoleText.push("$: > Enterprise-secured connection established.");
-                consoleText.push("$: > Initiate VPN session? [Y/N]");
+                consoleText.push("$: > VPN connection available");
+                document.getElementById("vpn-input").style.display = "inline-block";
+                
+                // Handle button clicks
+                document.getElementById("yes-btn").addEventListener("click", function() {
+                    consoleText.push("$: > Initiating VPN connection...");
+                    // Add your VPN connection logic here
+                    document.getElementById("vpn-input").style.display = "none";
+                    displayLine();
+                });
+                
+                document.getElementById("no-btn").addEventListener("click", function() {
+                    consoleText.push("$: > VPN connection cancelled.");
+                    document.getElementById("vpn-input").style.display = "none";
+                    displayLine();
+                });
             } else {
-                consoleText.push("$: > Device posture assessment: NON-COMPLIANT ❌");
+                consoleText.push(`$: > Device posture assessment: Not-Compliant ❌`);
                 consoleText.push("$: > Access restricted. Compliance remediation required.");
+                consoleText.push("$: > VPN connection not available.");
             }
             
             let index = 0;
@@ -78,9 +139,14 @@
                 }
             }
             displayLine();
-        }
+        };
 
-        displayConsole();
+        setTimeout(function() {
+            document.getElementById("preloader").style.display = "none";
+            document.getElementById("console").style.display = "block";
+            displayConsole();
+        }, 2000);
+
     </script>
 </body>
 </html>

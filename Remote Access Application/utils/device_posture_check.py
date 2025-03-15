@@ -1,3 +1,5 @@
+# File contains functions to check device posture
+
 import subprocess
 import platform
 
@@ -57,10 +59,10 @@ def run_device_posture_check():
         "Antivirus Status": check_antivirus_status(),
         "Firewall Status": check_firewall_status(),
         "TPM Status": check_tpm_status(),
-        "SecureBoot": check_secureboot_status(),
-        "BitLocker Status": check_bitlocker_status()
+       # "SecureBoot": check_secureboot_status()
+       # "BitLocker Status": check_bitlocker_status()
     }
-    
+    print(checks)
     non_compliant_checks = {k: v for k, v in checks.items() if not v["compliant"]}
     
     if non_compliant_checks:
