@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    <div id="preloader" class="preloader" style="display:none;">   <svg version="1.1" id="L7" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+    <div id="preloader" class="preloader">   <svg version="1.1" id="L7" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
         viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
        <path fill="#fff" d="M31.6,3.5C5.9,13.6-6.6,42.7,3.5,68.4c10.1,25.7,39.2,38.3,64.9,28.1l-3.1-7.9c-21.3,8.4-45.4-2-53.8-23.3
         c-8.4-21.3,2-45.4,23.3-53.8L31.6,3.5z">
@@ -46,11 +46,10 @@
         </path></svg>
     </div>
  
-    <pre class="console-output" id="console" style="display:block;"></pre>
+    <pre class="console-output" id="console" style="display: none;"></pre>
     <div id="vpn-input" style="display: none; position: relative; padding-left: 1rem;">
         <span style="color: rgb(235, 181, 106); font-family: monospace; font-size: 16px;">$: > </span>
-        <button id="yes-btn" class="console-btn">Connect VPN</button>
-        <button id="no-btn" class="console-btn">Cancel</button>
+        <button id="logout-btn" class="console-btn" onclick="handleLogout()">Log Out</button>
     </div>
     
     <style>
@@ -69,81 +68,53 @@
             background: #00ff00;
             color: #000;
         }
+        .status-connected {
+            color: #00ff00;
+        }
+        .status-disconnected {
+            color: #ff0000;
+        }
     </style>
     
 
     <script>
-   
-   
-        async function fetchDevicePosture() {
+        async function handleLogout() {
             try {
-                const response = await fetch("/api/device_posture");
-                const data = await response.json();
-                console.log(data.compliant)
-                return data.compliant;
+                const response = await fetch('/logout', {
+                    method: 'GET'
+                });
+                if (response.ok) {
+                    window.location.href = '/';
+                }
             } catch (error) {
-                console.error("Error fetching device posture:", error);
-                return "unknown";
+                console.error('Logout failed:', error);
             }
         }
 
         async function displayConsole() {
-            const userdata =  {{ userlogged | tojson }} ;
-            const device_data = {{ device_data | tojson }} ;
-            const device_trusted = {{ device_trusted | tojson }} ;
-            console.log(device_trusted)
+            const userdata = {{ userlogged | tojson }};
+            const device_data = {{ device_data | tojson }};
+            const private_ip = {{ private_ip | tojson }};
             const consoleText = [
                 "$: > Welcome to OwlGuard v1.0 - Enterprise Secure Access Portal",
-                `$: > Logged in as: ${userdata.email}  `,
+                `$: > Logged in as: ${userdata.email}`,
                 `$: > User Id: ${userdata.uuid}`,
                 `$: > Device Id: ${device_data.device_id}`,
                 "",
-
-                "",
-                "$: > Detecting  network environment       ■■■■■■■■■■■ ",
-                `$: > Public IP Address: ${device_data.public_ip}             `,
-                `$: > Private IP Address: Disconnected`,
-//"$: > Establishing encrypted communication with Secure Edge Gateway..",
+                "$: > Initializing OwlGuard Secure Access  ■■■■■■■■■■■ ",
+                "$: > Detecting network environment       ■■■■■■■■■■■ ",
+                `$: > Public IP Address: ${device_data.public_ip}`,
+                `$: > Private IP Address: ${private_ip}`,
                 "$: > Loading security policies            ■■■■■■■■■■■ ",
                 "$: > Performing device posture assessment ■■■■■■■■■■■ ",
                 "",
-
+                "$: > Device posture assessment: Compliant ✅",
+                "$: > Enterprise-secured connection established.",
+                "$: > VPN Connection Status: <span class='status-connected'>Connected</span>",
+                "$: > Secure tunnel established successfully",
+                "",
+                "$: > Ready for secure access"
             ];
-
-            if (device_trusted === "Device is trusted") {
-                consoleText.push("$: > Device is trusted by the organization ✔");
-            } else {
-                consoleText.push("$: > Device is not trusted by the organization");
-            }
-
-
-
-            
-            const status = await fetchDevicePosture();
-            if (status === true) {
-                consoleText.push(`$: > Device posture assessment: Compliant ✅`);
-                consoleText.push("$: > Enterprise-secured connection established.");
-                consoleText.push("$: > VPN connection available");
-                document.getElementById("vpn-input").style.display = "inline-block";
-                
-                // Handle button clicks
-                document.getElementById("yes-btn").addEventListener("click", function() {
-                    consoleText.push("$: > Initiating VPN connection...");
-                    // Add your VPN connection logic here
-                    document.getElementById("vpn-input").style.display = "none";
-                    displayLine();
-                });
-                
-                document.getElementById("no-btn").addEventListener("click", function() {
-                    consoleText.push("$: > VPN connection cancelled.");
-                    document.getElementById("vpn-input").style.display = "none";
-                    displayLine();
-                });
-            } else {
-                consoleText.push(`$: > Device posture assessment: Not-Compliant ❌`);
-                consoleText.push("$: > Access restricted. Compliance remediation required.");
-                consoleText.push("$: > VPN connection not available.");
-            }
             
             let index = 0;
             const consoleElement = document.getElementById("console");
@@ -152,15 +123,18 @@
                     consoleElement.innerHTML += consoleText[index] + "\n";
                     index++;
                     setTimeout(displayLine, Math.random() * 300 + 100);
+                } else {
+                    document.getElementById("vpn-input").style.display = "inline-block";
                 }
             }
             displayLine();
-        };
+        }
 
-        displayConsole();
-
-
-
+        setTimeout(function() {
+            document.getElementById("preloader").style.display = "none";
+            document.getElementById("console").style.display = "block";
+            displayConsole();
+        }, 2000);
     </script>
 </body>
 </html>

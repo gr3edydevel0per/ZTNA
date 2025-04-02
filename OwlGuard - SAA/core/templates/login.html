@@ -5,12 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
     <title>Login - Remote Access</title>
- 
+    <style>
+        /* Existing styles */
+        
+        /* Loader styles */
+        .loader {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 3px solid #3498db;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .btn-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        button[type="submit"] {
+            min-width: 100px;
+            position: relative;
+        }
+
+        button[type="submit"]:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+    </style>
 </head>
 <body>
 <div class="container" id="container">
     <div class="form-container sign-in-container">
-        <form id="loginForm" method="POST" action="{{ url_for('login') }}">
+        <form id="loginForm" method="POST" action="{{ url_for('login') }}" onsubmit="handleSubmit(event)">
             <h1>Sign in</h1>
             <div style="width: 100%;">
                 <input type="email" id="email" name="email" required placeholder="Email">
@@ -19,7 +55,12 @@
                 <input type="password" id="password" name="password" required placeholder="Password">
             </div>
             <a href="#">Forgot your password?</a>
-            <button type="submit">Sign In</button>
+            <button type="submit" id="submitBtn">
+                <div class="btn-content">
+                    <span id="btnText">Sign In</span>
+                    <div class="loader" id="btnLoader"></div>
+                </div>
+            </button>
             {% if error %}
             <div class="error-message" style="color: red;margin-top: 10px;">{{ error }}</div>
             {% endif %}
@@ -48,8 +89,21 @@
 </div>
 
 <footer>
-    <p>Powered by <strong>BehindMethods</strong> 🔒 - Ensuring Safe & Trusted Access</p>
+    <p>Powered by <strong>NetworkX</strong> 🔒 - Ensuring Safe & Trusted Access</p>
 </footer>
+
+<script>
+    function handleSubmit(event) {
+        const submitBtn = document.getElementById('submitBtn');
+        const btnText = document.getElementById('btnText');
+        const btnLoader = document.getElementById('btnLoader');
+        
+        // Disable button and show loader
+        submitBtn.disabled = true;
+        btnText.style.display = 'none';
+        btnLoader.style.display = 'block';
+    }
+</script>
 
 </body>
 </html>

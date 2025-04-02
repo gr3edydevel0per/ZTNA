@@ -1,4 +1,8 @@
 API/node_modules
 API/.env
 API/schema.sql
-Remote Access Application/utils/api_server.py
+OwlGuard - SAA/utils/api_server.py
+OwlGuard - SAA/build
+OwlGuard - SAA/dist
+**/__pycache__/
+
