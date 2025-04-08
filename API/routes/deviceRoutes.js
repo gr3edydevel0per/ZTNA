@@ -226,5 +226,181 @@ router.post('/isAuthorized', verifyToken, async (req, res) => {
 });
 
 
+// Created a notification for the user to approve or deny the device authorization
+router.post('/device-auth-req', verifyToken, async (req, res) => {
+    const deviceData = req.body;
+    console.log(deviceData);
+    const uuid = deviceData.uuid;
+    const device_name = deviceData.device_name;
+    const device_id = deviceData.device_id;
+    const ip_address = deviceData.ip_address;
+
+    if (!device_name || !device_id || !ip_address) {
+        return res.status(400).json({ error: 'Missing required fields' });
+    }
+
+    try {
+        // Check for existing request
+        const existingRequest = await executeQuery(`
+            SELECT status FROM device_auth_requests 
+            WHERE device_id = ? AND uuid = ?
+        `, [device_id, uuid]);
+
+        if (existingRequest.length > 0) {
+            return res.status(200).json({
+                status: 'info',
+                message: 'Device authorization request already sent',
+                request_status: existingRequest[0].status
+            });
+        }
+
+        // Insert new request
+        const result = await executeQuery(`
+            INSERT INTO device_auth_requests (uuid, device_name, device_id, ip_address, status)
+            VALUES (?, ?, ?, ?, 'pending')
+        `, [uuid, device_name, device_id, ip_address]);
+
+        res.status(201).json({
+            status: 'success',
+            message: 'Device authorization request sent successfully',
+            request_status: 'pending'
+        });
+    } catch (error) {
+        console.error('Error inserting device auth request:', error);
+        res.status(500).json({ 
+            status: 'error',
+            message: 'Internal server error',
+            details: error.message 
+        });
+    }
+});
+
+// GET /check-device-auth-req?uuid=<UUID>
+router.get('/check-device-auth-req', verifyToken, async (req, res) => {
+    console.log("check-device-auth-req");
+    const uuid = req.query.uuid;
+    try {
+        const requests = await executeQuery(
+            'SELECT * FROM device_auth_requests WHERE uuid = ? AND status = "pending" ORDER BY requested_at DESC LIMIT 1',
+            [uuid]
+        );
+
+        res.status(200).json({
+            status: 'success',
+            data: requests
+        });
+    } catch (error) {
+        console.error('Error fetching device auth requests:', error);
+        res.status(500).json({
+            status: 'error',
+            message: 'Server error',
+            details: error.message
+        });
+    }
+});
+
+
+// GET /check-device-auth-res?uuid=<UUID>
+router.get('/check-device-auth-res', verifyToken, async (req, res) => {
+    console.log("check-device-auth-res");
+    const uuid = req.query.uuid;
+
+    if (!uuid) {
+        return res.status(400).json({
+            status: 'error',
+            message: 'UUID is required'
+        });
+    }
+
+    try {
+        const [latestRequest] = await executeQuery(
+            'SELECT * FROM device_auth_requests WHERE uuid = ? ORDER BY requested_at DESC LIMIT 1',
+            [uuid]
+        );
+
+        if (!latestRequest) {
+            return res.status(404).json({
+                status: 'error',
+                message: 'No device authorization request found for this UUID'
+            });
+        }
+
+        // Return success/denied/pending based on the request status
+        if (latestRequest.status === 'approved') {
+            return res.status(200).json({
+                status: 'success',
+                decision: 'approved',
+                data: latestRequest
+            });
+        } else if (latestRequest.status === 'denied') {
+            return res.status(200).json({
+                status: 'success',
+                decision: 'denied',
+                data: latestRequest
+            });
+        } else {
+            return res.status(200).json({
+                status: 'success',
+                decision: 'pending',
+                data: latestRequest
+            });
+        }
+
+    } catch (error) {
+        console.error('Error fetching device auth requests:', error);
+        res.status(500).json({
+            status: 'error',
+            message: 'Server error',
+            details: error.message
+        });
+    }
+});
+
+
+
+// POST /device-response — approve or deny a request
+router.post('/device-response', verifyToken, async (req, res) => {
+    console.log("device-response");
+    const decision = req.body.decision;
+    const uuid = req.body.uuid;
+    const device_id = req.body.device_id;
+
+    if (!uuid || !device_id || !['approved', 'denied'].includes(decision)) {
+        return res.status(400).json({
+            status: 'error',
+            message: 'Invalid input. Required fields: uuid, device_id, decision (approved/denied)'
+        });
+    }
+
+    try {
+        const result = await executeQuery(
+            `UPDATE device_auth_requests 
+             SET status = ?, responded_at = CURRENT_TIMESTAMP 
+             WHERE uuid = ? AND device_id = ? AND status = 'pending'`,
+            [decision, uuid, device_id]
+        );
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({
+                status: 'error',
+                message: 'No pending request found for the specified device and user'
+            });
+        }
+
+        res.status(200).json({
+            status: 'success',
+            message: 'Device response updated successfully'
+        });
+    } catch (error) {
+        console.error('Error updating device response:', error);
+        res.status(500).json({
+            status: 'error',
+            message: 'Server error',
+            details: error.message
+        });
+    }
+});
+
+
 
 module.exports = router;

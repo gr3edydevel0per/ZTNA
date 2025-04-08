@@ -66,6 +66,7 @@ router.post('/addUser', async (req, res) => {
 
 // User Login
 router.post('/login', async (req, res) => {
+    console.log("req recieved");
     try {
         const { email, password } = req.body;
 
