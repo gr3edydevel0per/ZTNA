@@ -5,6 +5,7 @@ import requests
 from pathlib import Path
 import time
 import win32con
+from utils.essentials import get_ip
 
 class VPNManager:
     def __init__(self, uuid, session_token):
@@ -13,6 +14,7 @@ class VPNManager:
         self.config_dir = Path(os.path.expanduser("~")) / "Documents" / "owlguard"
         self.config_dir.mkdir(parents=True, exist_ok=True)
         self.uuid = uuid
+        self.ip_address = get_ip()
         self.config_path = self.config_dir / f"{self.uuid}.bmers.cache.ovpn"
         self.session_token = session_token
         self.device_data = self.session_token.get('device_data')
@@ -54,6 +56,7 @@ class VPNManager:
                 file.write(f"setenv UV_DEVICE_NAME {self.device_name}\n")
                 file.write(f"setenv UV_DEVICE_TYPE {self.device_type}\n")
                 file.write(f"setenv UV_HARDWARE_FINGERPRINT {self.hardware_fingerprint}\n")
+                file.write(f"setenv UV_IP_ADDRESS {self.ip_address}\n")
             print("✅ Device details appended to OpenVPN config.")
         except Exception as e:
             print(f"❌ Error updating OpenVPN config: {e}")
