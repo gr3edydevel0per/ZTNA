@@ -1,1 +1,1 @@
-Zero Trust Network Architecture
+Zero Trust VPN
