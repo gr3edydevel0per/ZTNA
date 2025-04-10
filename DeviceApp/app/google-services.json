@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "678260739427",
+    "project_id": "ztna-deviceapp",
+    "storage_bucket": "ztna-deviceapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:678260739427:android:bd88ec9223271801b0d756",
+        "android_client_info": {
+          "package_name": "com.ztna.deviceapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBs5RvWhEk6k3ddTVD8rygb2BvAbTcdbak"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
