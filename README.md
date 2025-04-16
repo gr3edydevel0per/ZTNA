@@ -22,11 +22,17 @@ Multi-factor authentication via push-based approval or denial:
 - Real-time access notifications
 - One-tap approval/denial
 
+
+### Acess Control Flow
+<img src="https://raw.githubusercontent.com/gr3edydevel0per/StrixNet_ZT-VPN/refs/heads/main/Assets/accessControl.jpg">
+
 ### 🌐 Hybrid Tunneling Architecture
 Combining **OpenVPN** and **WireGuard** for maximum security and performance:
 - OpenVPN for initial handshake and control plane
 - WireGuard for data plane – blazing fast and lightweight
 - Automatic fallback and session recovery
+
+
 
 <img src="https://raw.githubusercontent.com/gr3edydevel0per/StrixNet_ZT-VPN/refs/heads/main/Assets/hybridTunnelArchitecture.jpg">
 
