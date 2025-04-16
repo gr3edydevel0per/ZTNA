@@ -23,7 +23,7 @@ Multi-factor authentication via push-based approval or denial:
 - One-tap approval/denial
 
 
-### Acess Control Flow
+### 🛡️ Acess Control Flow
 
 <img src="https://raw.githubusercontent.com/gr3edydevel0per/StrixNet_ZT-VPN/refs/heads/main/Assets/architecture.jpg">
 
