@@ -24,6 +24,9 @@ Multi-factor authentication via push-based approval or denial:
 
 
 ### Acess Control Flow
+
+<img src="https://raw.githubusercontent.com/gr3edydevel0per/StrixNet_ZT-VPN/refs/heads/main/Assets/architecture.jpg">
+
 <img src="https://raw.githubusercontent.com/gr3edydevel0per/StrixNet_ZT-VPN/refs/heads/main/Assets/accessControl.jpg">
 
 ### 🌐 Hybrid Tunneling Architecture
