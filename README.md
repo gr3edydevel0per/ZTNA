@@ -25,9 +25,9 @@ Multi-factor authentication via push-based approval or denial:
 
 ### 🛡️ Acess Control Flow
 
-<img src="https://raw.githubusercontent.com/gr3edydevel0per/StrixNet_ZT-VPN/refs/heads/main/Assets/architecture.jpg">
+<img src="https://raw.githubusercontent.com/gr3edydevel0per/StrixNet_ZT-VPN/refs/heads/v0.1-proto0.3/Assets/architecture.jpg">
 
-<img src="https://raw.githubusercontent.com/gr3edydevel0per/StrixNet_ZT-VPN/refs/heads/main/Assets/accessControl.jpg">
+<img src="https://raw.githubusercontent.com/gr3edydevel0per/StrixNet_ZT-VPN/refs/heads/v0.1-proto0.3/Assets/accessControl.jpg">
 
 ### 🌐 Hybrid Tunneling Architecture
 Combining **OpenVPN** and **WireGuard** for maximum security and performance:
@@ -37,7 +37,7 @@ Combining **OpenVPN** and **WireGuard** for maximum security and performance:
 
 
 
-<img src="https://raw.githubusercontent.com/gr3edydevel0per/StrixNet_ZT-VPN/refs/heads/main/Assets/hybridTunnelArchitecture.jpg">
+<img src="https://raw.githubusercontent.com/gr3edydevel0per/StrixNet_ZT-VPN/refs/heads/v0.1-proto0.3/Assets/hybridTunnelArchitecture.jpg">
 
 ## 🧠 Why ZT-VPN?
 
