@@ -1,4 +1,4 @@
-# 🦉 ZTVPN – Zero Trust VPN with Device Intelligence
+# 🦉 StrixNet_ZTVPN
 
 ZTVPN is a next-generation VPN solution built with Zero Trust principles at its core. Designed for modern organizations, ZTVPN ensures every device is verified, every connection is secured, and access is continuously evaluated.
 
@@ -19,7 +19,6 @@ Explicit device-level approval before onboarding:
 
 ### 🔁 MFA with App-Based Approval
 Multi-factor authentication via push-based approval or denial:
-- Integration with trusted mobile apps (e.g., Duo, Authy, etc.)
 - Real-time access notifications
 - One-tap approval/denial
 
@@ -28,6 +27,8 @@ Combining **OpenVPN** and **WireGuard** for maximum security and performance:
 - OpenVPN for initial handshake and control plane
 - WireGuard for data plane – blazing fast and lightweight
 - Automatic fallback and session recovery
+
+<img src="https://raw.githubusercontent.com/gr3edydevel0per/StrixNet_ZT-VPN/refs/heads/main/Assets/hybridTunnelArchitecture.jpg">
 
 ## 🧠 Why ZTVPN?
 
