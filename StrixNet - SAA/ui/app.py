@@ -12,8 +12,8 @@ import requests
 # Constants
 APP_NAME = "OwlGuard"
 WINDOW_SIZE = (1000, 800)
-ICON_PATH = os.path.abspath("ui/assets/images/owl.ico")
-TRAY_ICON_PATH = os.path.abspath("ui/assets/images/owlhiddenActive.png")
+ICON_PATH = os.path.abspath("assets/images/owl.ico")
+TRAY_ICON_PATH = os.path.abspath("assets/images/owlhiddenActive.png")
 FLASK_URL = "http://localhost:5000/"
 
 def start_flask_server():

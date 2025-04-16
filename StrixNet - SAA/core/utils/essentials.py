@@ -21,3 +21,13 @@ def get_current_machine_id():
         return str(subprocess.check_output('cat /var/lib/dbus/machine-id', shell=True), 'utf-8').strip()
     else:
         return "Unsupported OS"
+
+
+def download_file(url, destination):    
+    response = requests.get(url)
+    if response.status_code == 200:
+        with open(destination, 'wb') as file:
+            file.write(response.content)
+        return f"File downloaded to {destination}"
+    else:
+        return f"Failed to download file: {response.status_code}"

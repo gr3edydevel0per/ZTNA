@@ -1,8 +1,8 @@
 API/node_modules
 API/.env
 API/schema.sql
-OwlGuard - SAA/utils/api_server.py
-OwlGuard - SAA/build
-OwlGuard - SAA/dist
+StrixNet - SAA/utils/api_server.py
+StrixNet - SAA/build
+StrixNet - SAA/dist
 **/__pycache__/
 

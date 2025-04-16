@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/connection.css') }}">
+</head>
+<body class="fade-in">
+    <div class="text">
+        CONNECTING
+      </div>
+      <div class="box">
+        <div class="comp"></div>
+        <div class="loader"></div>
+        <div class="con"></div>
+        <div class="byte"></div>
+        <div class="server"></div>
+      </div>
+     
+     <script>
+        const uuid = {{ uuid | tojson }};
+        const token = {{ token | tojson }};
+        console.log(uuid);
+        console.log(token);
+
+        async function checkAuthStatus() {
+            try {
+                const res = await fetch(`http://owlguard.org:5069/api/devices/check-device-auth-res?uuid=${uuid}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}` // Replace with actual token if needed
+                    }
+                });
+        
+                const data = await res.json();
+                console.log(data);
+        
+                if (data.status === 'success') {
+                    if (data.decision === 'approved') {
+                        window.location.href = '/vpn';
+                    } else if (data.decision === 'denied') {
+                        document.body.innerHTML = '<h3>Access Denied</h3>';
+                    } else {
+                        // Still pending, check again after 5 seconds
+                        setTimeout(checkAuthStatus, 3000);
+                    }
+                } else {
+                    document.body.innerHTML = '<h3>Error: ' + data.message + '</h3>';
+                }
+            } catch (err) {
+                console.error('Error checking auth status:', err);
+                document.body.innerHTML = '<h3>Server Error</h3>';
+            }
+        }
+        
+        // Start polling
+        checkAuthStatus();
+        </script>
+        
+</body>
+</html>

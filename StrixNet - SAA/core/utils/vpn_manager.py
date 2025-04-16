@@ -5,7 +5,7 @@ import requests
 from pathlib import Path
 import time
 import win32con
-from utils.essentials import get_ip
+from core.utils.essentials import get_ip
 
 class VPNManager:
     def __init__(self, uuid, session_token):

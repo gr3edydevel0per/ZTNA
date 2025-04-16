@@ -41,7 +41,7 @@ a = Analysis(
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
-    excludes=['PySide2', 'PySide6', 'PyQt5', 'PyQt4', '__pycache__'],  # Exclude other Qt bindings and cache
+    excludes=['PySide2', 'PySide6', 'PyQt5', 'PyQt4', '__pycache__'], 
     win_no_prefer_redirects=False,
     win_private_assemblies=False,
     cipher=block_cipher,
@@ -70,5 +70,8 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon='ui/assets/images/owl.ico'  # Make sure this path is correct
-) 
+    icon='ui/assets/images/owl.ico',  # Make sure this path is correct
+    optimize=1,
+    uac_admin=True,  # <-- This is the magic flag
+)
+

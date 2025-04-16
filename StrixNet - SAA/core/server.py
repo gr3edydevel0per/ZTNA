@@ -4,6 +4,7 @@ from core.utils.device_posture import DevicePostureChecker
 from core.utils.device_data import get_device_data
 from core.utils.vpn_manager import VPNManager
 from core.utils.api_server import API_URL, USER_URL, DEVICE_URL
+from core.utils.wg_manager import WGManager
 import os
 
 app = Flask(__name__)
@@ -46,8 +47,10 @@ def vpn():
         return redirect(url_for('home'))
 
     vpn_manager = VPNManager(uuid=session.get('user_data')['uuid'], session_token=session)
-    vpn_result = vpn_manager.start_vpn()
-    private_ip = vpn_manager.get_private_ip()
+    vpn_manager.stop_vpn()
+    wg_manager = WGManager(uuid=session.get('user_data')['uuid'])
+    wg_manager.start_wireguard_service()
+    private_ip = "10.0.11.2"
 
     return render_template(
         'vpn.html', 
@@ -60,7 +63,9 @@ def vpn():
 
 @app.route('/connectVPN')
 def connect_vpn():
-    return render_template('connection.html')
+    vpn_manager = VPNManager(uuid=session.get('user_data')['uuid'], session_token=session)
+    vpn_result = vpn_manager.start_vpn()
+    return render_template('connection.html', uuid=session.get('user_data')['uuid'],token=session.get('token'))
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -83,8 +88,10 @@ def login():
 @app.route('/logout')
 def logout():
     if 'user_data' in session:
-        vpn_manager = VPNManager(uuid=session.get('user_data')['uuid'], session_token=session)
-        vpn_manager.stop_vpn()
+            # vpn_manager = VPNManager(uuid=session.get('user_data')['uuid'], session_token=session)
+            # vpn_manager.stop_vpn()
+            wg_manager = WGManager(uuid=session.get('user_data')['uuid'])
+            wg_manager.stop_wireguard_service()
     session.clear()
     return jsonify({"status": "success", "redirect": url_for('home')})
 
