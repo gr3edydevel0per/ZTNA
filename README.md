@@ -39,23 +39,13 @@ Combining **OpenVPN** and **WireGuard** for maximum security and performance:
 
 <img src="https://raw.githubusercontent.com/gr3edydevel0per/StrixNet_ZT-VPN/refs/heads/main/Assets/hybridTunnelArchitecture.jpg">
 
-## 🧠 Why ZTVPN?
+## 🧠 Why ZT-VPN?
 
 Traditional VPNs rely on network perimeter trust. ZTVPN enforces:
 - **Zero Trust**: Verify identity and device on every access attempt.
 - **Granular Access Control**: Context-aware, least-privilege principles.
 - **Performance**: Hybrid tunnel for speed without compromise.
 
-## 🚀 Quick Start (Coming Soon)
-
-- Setup guide
-- CLI / Web UI instructions
-- Integration with IAM / MDM solutions
-
-## 📚 Documentation
-
-> Full docs and deployment guides coming soon.  
-> For now, check out the `/docs/` folder or open an issue for questions.
 
 ## 🧩 Roadmap
 
@@ -71,4 +61,3 @@ Feel free to open an issue or reach out.
 
 ---
 
-**ZTVPN – Trust no one. Verify everything.**
