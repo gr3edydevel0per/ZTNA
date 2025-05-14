@@ -29,15 +29,6 @@ Multi-factor authentication via push-based approval or denial:
 
 <img src="https://raw.githubusercontent.com/gr3edydevel0per/StrixNet_ZT-VPN/refs/heads/v0.1-proto0.3/Assets/accessControl.jpg">
 
-### 🌐 Hybrid Tunneling Architecture
-Combining **OpenVPN** and **WireGuard** for maximum security and performance:
-- OpenVPN for initial handshake and control plane
-- WireGuard for data plane – blazing fast and lightweight
-- Automatic fallback and session recovery
-
-
-
-<img src="https://raw.githubusercontent.com/gr3edydevel0per/StrixNet_ZT-VPN/refs/heads/v0.1-proto0.3/Assets/hybridTunnelArchitecture.jpg">
 
 ## 🧠 Why ZT-VPN?
 
