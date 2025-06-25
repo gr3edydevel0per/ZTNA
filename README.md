@@ -1,4 +1,4 @@
-# 🦉 StrixNet_ZTVPN
+# 🦉 
 
 ZTVPN is a next-generation VPN solution built with Zero Trust principles at its core. Designed for modern organizations, ZTVPN ensures every device is verified, every connection is secured, and access is continuously evaluated.
 
