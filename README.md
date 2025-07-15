@@ -1,4 +1,9 @@
-# 🦉 
+
+### 🛡️ Acess Control Flow
+
+<img src="https://raw.githubusercontent.com/gr3edydevel0per/StrixNet_ZT-VPN/refs/heads/v0.1-proto0.3/Assets/architecture.jpg">
+
+<img src="https://raw.githubusercontent.com/gr3edydevel0per/StrixNet_ZT-VPN/refs/heads/v0.1-proto0.3/Assets/accessControl.jpg">
 
 ZTVPN is a next-generation VPN solution built with Zero Trust principles at its core. Designed for modern organizations, ZTVPN ensures every device is verified, every connection is secured, and access is continuously evaluated.
 
@@ -22,12 +27,6 @@ Multi-factor authentication via push-based approval or denial:
 - Real-time access notifications
 - One-tap approval/denial
 
-
-### 🛡️ Acess Control Flow
-
-<img src="https://raw.githubusercontent.com/gr3edydevel0per/StrixNet_ZT-VPN/refs/heads/v0.1-proto0.3/Assets/architecture.jpg">
-
-<img src="https://raw.githubusercontent.com/gr3edydevel0per/StrixNet_ZT-VPN/refs/heads/v0.1-proto0.3/Assets/accessControl.jpg">
 
 
 ## 🧠 Why ZT-VPN?
